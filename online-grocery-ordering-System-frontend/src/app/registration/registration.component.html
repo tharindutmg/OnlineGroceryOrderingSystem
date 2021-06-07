@@ -1,0 +1,349 @@
+<script>
+    function myFunction() {
+      var x = document.getElementsByName("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+</script>
+    <!-- 
+	Upper Header Section 
+    -->
+<app-upper-header-section></app-upper-header-section>
+
+    <!--
+Lower Header Section 
+-->
+    <div class="container">
+        <div id="gototop"> </div>
+        <app-lower-header-section></app-lower-header-section>
+
+        <!--
+Navigation Bar Section 
+-->
+<app-navigation-bar-section></app-navigation-bar-section>
+        <!-- 
+Body Section 
+-->
+        <div class="row">
+            <app-sidebar></app-sidebar>
+            <div class="span9">
+                <!-- <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                    <li class="active">Registration</li>
+                </ul> -->
+                <h3> Create Your New Account</h3>
+                <!-- <hr class="soft" /> -->
+                <div class="well">
+                    <form class="form-horizontal" #registration="ngForm" (ngSubmit)="submit(registration);">
+                        <!-- <h3>Your Personal Details</h3> -->
+                        <!-- <div class="control-group">
+                            <label class="control-label">Title <sup>*</sup></label>
+                            <div class="controls">
+                                <select class="span1" name="days">
+                                    <option value="">-</option>
+                                    <option value="1">Mr.</option>
+                                    <option value="2">Mrs</option>
+                                    <option value="3">Miss</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <div class="control-group">
+                            <label class="control-label" for="inputFname">Full Name <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" 
+                                                name="fullName" 
+                                                class="form-control" 
+                                                [class.is-invalid]="fullName.touched && fullName.errors?.required"
+                                                placeholder="Full Name"
+                                                #fullName="ngModel" 
+                                                [(ngModel)]="mainModel.fullName"
+                                            required>
+                                <div *ngIf="fullName.touched && fullName.errors?.required" style="color: red;">
+                                    Please enter full name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputLname">Phone Number <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" 
+                                                name="phoneNo" 
+                                                class="form-control" 
+                                                [class.is-invalid]="(phoneNo.touched && phoneNo.errors?.required) || (phoneNo.touched && phoneNo.errors?.pattern)"
+                                                placeholder="07********"
+                                                #phoneNo="ngModel" 
+                                                [(ngModel)]="mainModel.phoneNo"
+                                                [pattern]="mobNumberPattern"
+                                                maxlength="10"
+                                                required>
+                                <div *ngIf="phoneNo.touched && phoneNo.errors?.required" style="color: red;">
+                                    Please enter your phone number
+                                </div>
+                                <div *ngIf="phoneNo.touched && phoneNo.errors?.pattern" style="color: red;">
+                                    Please enter valid phone number
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputEmail">Email <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" 
+                                        name="email" 
+                                        class="form-control" 
+                                        [class.is-invalid]="(email.touched && email.errors?.required) || (email.touched && email.errors?.pattern)"
+                                        placeholder="john.smith@example.com"
+                                        #email="ngModel" 
+                                        [(ngModel)]="mainModel.email"
+                                        [pattern]="emailPattern"
+                                        required>
+                                <div *ngIf="email.touched && email.errors?.required" style="color: red;">
+                                    Enter your email
+                                </div>
+                                <div *ngIf="email.touched && email.errors?.pattern" style="color: red;">
+                                    Please enter valid email
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Password <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="password" 
+                                        name="password" 
+                                        class="form-control" 
+                                        [class.is-invalid]="password.touched && password.errors?.required"
+                                        placeholder="Password"
+                                        #password="ngModel" 
+                                        [(ngModel)]="mainModel.password"
+                                        minlength = "5"
+                                    required>
+                                    <div *ngIf="password.touched && password.errors?.required" style="color: red;">
+                                        PleaseeEnter password
+                                    </div>
+                                    <div *ngIf="password.touched && password.errors?.minlength" style="color: red;">
+                                        Use 5 characters or more for your password</div>
+                                    <!-- <input type="checkbox" click="myFunction()">Show Password -->
+                            </div>
+                        </div>
+                        <!-- <div class="control-group">
+                            <label class="control-label">Date of Birth <sup>*</sup></label>
+                            <div class="controls">
+                                <select class="span1" name="days">
+                                    <option value="">-</option>
+                                    <option value="1">1&nbsp;&nbsp;</option>
+                                    <option value="2">2&nbsp;&nbsp;</option>
+                                    <option value="3">3&nbsp;&nbsp;</option>
+                                    <option value="4">4&nbsp;&nbsp;</option>
+                                    <option value="5">5&nbsp;&nbsp;</option>
+                                    <option value="6">6&nbsp;&nbsp;</option>
+                                    <option value="7">7&nbsp;&nbsp;</option>
+                                </select>
+                                <select class="span1" name="days">
+                                    <option value="">-</option>
+                                    <option value="1">1&nbsp;&nbsp;</option>
+                                    <option value="2">2&nbsp;&nbsp;</option>
+                                    <option value="3">3&nbsp;&nbsp;</option>
+                                    <option value="4">4&nbsp;&nbsp;</option>
+                                    <option value="5">5&nbsp;&nbsp;</option>
+                                    <option value="6">6&nbsp;&nbsp;</option>
+                                    <option value="7">7&nbsp;&nbsp;</option>
+                                </select>
+                                <select class="span1" name="days">
+                                    <option value="">-</option>
+                                    <option value="1">1&nbsp;&nbsp;</option>
+                                    <option value="2">2&nbsp;&nbsp;</option>
+                                    <option value="3">3&nbsp;&nbsp;</option>
+                                    <option value="4">4&nbsp;&nbsp;</option>
+                                    <option value="5">5&nbsp;&nbsp;</option>
+                                    <option value="6">6&nbsp;&nbsp;</option>
+                                    <option value="7">7&nbsp;&nbsp;</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="submit" [disabled]="registration.invalid" value="Register" class="exclusive shopBtn">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- <div class="well">
+                    <form class="form-horizontal">
+                        <h3>Your Billing Details</h3>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <textarea></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="submit" name="submitAccount" value="Register" class="shopBtn exclusive">
+                            </div>
+                        </div>
+                    </form>
+                </div> -->
+
+
+                <!-- <div class="well">
+                    <form class="form-horizontal">
+                        <h3>Your Account Details</h3>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Fiels label <sup>*</sup></label>
+                            <div class="controls">
+                                <input type="text" placeholder=" Field name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="submit" name="submitAccount" value="Register" class="exclusive shopBtn">
+                            </div>
+                        </div>
+                    </form>
+                </div> -->
+
+
+            </div>
+        </div>
+        <!-- 
+Clients 
+-->
+        <section class="our_client">
+            <hr class="soften" />
+            <h4 class="title cntr"><span class="text">Manufactures</span></h4>
+            <hr class="soften" />
+            <div class="row">
+                <div class="span2">
+                    <a href="#"><img alt="" src="assets/img/1.png"></a>
+                </div>
+                <div class="span2">
+                    <a href="#"><img alt="" src="assets/img/2.png"></a>
+                </div>
+                <div class="span2">
+                    <a href="#"><img alt="" src="assets/img/3.png"></a>
+                </div>
+                <div class="span2">
+                    <a href="#"><img alt="" src="assets/img/4.png"></a>
+                </div>
+                <div class="span2">
+                    <a href="#"><img alt="" src="assets/img/5.png"></a>
+                </div>
+                <div class="span2">
+                    <a href="#"><img alt="" src="assets/img/6.png"></a>
+                </div>
+            </div>
+        </section>
+
+        <!--
+Footer
+-->
+<app-footer></app-footer>
+    </div><!-- /container -->
+
+    <!-- <div class="copyright">
+        <div class="container">
+            <p class="pull-right">
+                <a href="#"><img src="assets/img/maestro.png" alt="payment"></a>
+                <a href="#"><img src="assets/img/mc.png" alt="payment"></a>
+                <a href="#"><img src="assets/img/pp.png" alt="payment"></a>
+                <a href="#"><img src="assets/img/visa.png" alt="payment"></a>
+                <a href="#"><img src="assets/img/disc.png" alt="payment"></a>
+            </p>
+            <span>Copyright &copy; 2013<br> bootstrap ecommerce shopping template</span>
+        </div>
+    </div> -->
+    
