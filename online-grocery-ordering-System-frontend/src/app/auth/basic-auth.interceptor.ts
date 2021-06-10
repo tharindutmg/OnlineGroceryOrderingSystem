@@ -18,12 +18,12 @@ export class BasicAuthInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with basic auth credentials if available
         let authReq = request;
+        debugger
 
         const value = localStorage.getItem(CONSTANTS.USER_DETAILS)
         var userDetails : UserDetails = value !==null? JSON.parse(value):null;
 
-        const token = userDetails.userToken
-
+        const token = userDetails !==null? userDetails.userToken :null;
 
         if (token) {
           if (this.tokenExpired(token)) {// token expired 

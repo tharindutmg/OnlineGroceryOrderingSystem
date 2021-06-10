@@ -6,7 +6,7 @@ import com.allion.ogoss.security.AuthenticationRequest
 import com.allion.ogoss.security.AuthenticationResponse
 import com.allion.ogoss.security.JwtUtil
 import com.allion.ogoss.security.MyUserDetails
-import com.allion.ogoss.service.impl.UserServiceImpl
+import com.allion.ogoss.service.impl.LoginServiceImpl
 import com.allion.ogoss.util.ControllerHelper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.AuthenticationManager
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class LoginController (private var userServiceImpl: UserServiceImpl,private var jwtTokenUtil: JwtUtil) :ControllerHelper(){
+class LoginController (private var loginServiceImpl: LoginServiceImpl, private var jwtTokenUtil: JwtUtil) :ControllerHelper(){
 
     @Autowired
     private val authenticationManager: AuthenticationManager? = null
@@ -32,12 +32,12 @@ class LoginController (private var userServiceImpl: UserServiceImpl,private var 
         val commonResponce= CommonResponce<AuthenticationResponse>()
         try {
         authenticationManager?.authenticate(UsernamePasswordAuthenticationToken(authenticationRequest.userName, authenticationRequest.password))
-        val userDetails : MyUserDetails = userServiceImpl.loadUserByUsername(authenticationRequest.userName)
+        val userDetails : MyUserDetails = loginServiceImpl.loadUserByUsername(authenticationRequest.userName)
             println(userDetails.username)
             val jwt : String? = jwtTokenUtil.generateToken(userDetails);
 
             if(jwt !==null){
-                val user:User = userServiceImpl.getUserDetails(userDetails.userName)
+                val user:User = loginServiceImpl.getUserDetails(userDetails.userName)
 
                 commonResponce.code = successCode
                 commonResponce.message = successMessage

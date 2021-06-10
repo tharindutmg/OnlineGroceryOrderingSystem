@@ -37,7 +37,7 @@ interface UserMapper  {
      fun findAll():List<User>
 
      @Select("SELECT * FROM User WHERE userId=#{id}")
-     fun findById(userId :Long): User
+     fun findById(userId :Long): User?
 
      @Select("SELECT phoneNo FROM User WHERE phoneNo = #{phoneNo}")
      fun getPhoneNoByPhoneNo(phoneNo: String?): String?

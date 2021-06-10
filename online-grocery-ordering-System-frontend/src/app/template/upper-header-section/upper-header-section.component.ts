@@ -11,8 +11,6 @@ export class UpperHeaderSectionComponent implements OnInit {
 
   constructor() { }
 
-  //userDetails : UserDetails =new UserDetails();
-  //userName : String  ="";
   ngOnInit(): void {
     
   }

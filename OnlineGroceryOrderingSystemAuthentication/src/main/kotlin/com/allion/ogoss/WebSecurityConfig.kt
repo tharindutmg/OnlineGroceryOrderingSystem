@@ -5,6 +5,7 @@ import com.allion.ogoss.security.JwtRequestFilter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -54,8 +55,10 @@ class WebSecurityConfig (private var userDetailsService: UserDetailsService,
                 //.antMatchers("/*").permitAll()
                 .antMatchers("/admin/*").hasRole("ADMIN")
                 .antMatchers("/admin/*/*").hasRole("ADMIN")
-                .antMatchers("/user/*").hasAnyRole("ADMIN", "USER")
-                .antMatchers("/user/*/*").hasAnyRole("ADMIN", "USER") //.antMatchers("/*/*").permitAll() hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/user/*").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.GET,"/user/*").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST,"/user/*/*").hasAnyRole("ADMIN", "USER") //.antMatchers("/*/*").permitAll() hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/user/*/*").hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated() //.and().exceptionHandling()
                 .and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

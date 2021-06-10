@@ -1,6 +1,6 @@
 package com.allion.ogoss.security
 
-import com.allion.ogoss.service.impl.UserServiceImpl
+import com.allion.ogoss.service.impl.LoginServiceImpl
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UserDetails
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse
 
 @Component
 @CrossOrigin
-class JwtRequestFilter (private val userDetailsService: UserServiceImpl,
+class JwtRequestFilter (private val userDetailsService: LoginServiceImpl,
                         private val jwtUtil:JwtUtil): OncePerRequestFilter(){
 
     @Throws(ServletException::class, IOException::class)

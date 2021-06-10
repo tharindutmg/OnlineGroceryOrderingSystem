@@ -45,12 +45,10 @@ export class NavigationBarSectionComponent implements OnInit {
   
         console.info(userDetailss.userToken);
 
-        this._router.navigate([this._router.getCurrentNavigation.name]);
+        this._router.navigate(["/profile"]);
       }else{
         this.invalidLogin=true;
       }
-      
-
     })
   }
 

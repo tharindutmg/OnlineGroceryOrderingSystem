@@ -1,0 +1,170 @@
+<div class="span9">
+    <h3> Address Book</h3>
+    <!-- <hr class="soft" /> -->
+    <div class="well">
+        <div class="control-group">
+            <div class="controls">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Full name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Region</th>
+                            <th scope="col">Phone Number</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let address of mainModelList">
+                            <th>{{address.fullName}}</th>
+                            <td>
+                                <div class="badge badge-success text-wrap">
+                                    {{address.location}}
+                                </div>
+                                {{address.address}}
+                            </td>
+                            <td>{{address.province}}-{{address.district}}-{{address.city}}</td>
+                            <td>{{address.phoneNo}}</td>
+                            <td><input type="button" (click)="getAddressById(address)" value="EDIT"
+                                    class="exclusive shopBtn" data-toggle="modal" data-target="#myModal"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input type="button" (click)="modalOnclick()" value="+ ADD NEW ADDRESS" class="exclusive shopBtn"
+                    data-toggle="modal" data-target="#test">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="test">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Address</h4>
+                <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <!-- <div *ngIf="alert.isShow" [ngClass]="alert.type ? 'alert alert-success' : 'alert alert-danger'"  role="alert">
+                <strong>{{alert.code}}!</strong> {{alert.message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+                <form class="form-horizontal" #addressForm="ngForm" (ngSubmit)="submit(addressForm);">
+                    <div class="control-group">
+                        <label class="control-label" for="inputFname">Full Name <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" name="fullName" class="form-control"
+                                [class.is-invalid]="fullName.touched && fullName.errors?.required"
+                                placeholder="EX: Tharindu Mananjaya" #fullName="ngModel"
+                                [(ngModel)]="mainModel.fullName" required>
+                            <div *ngIf="fullName.touched && fullName.errors?.required" style="color: red;">
+                                Please enter full name
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputLname">Phone Number <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" name="phoneNo" class="form-control"
+                                [class.is-invalid]="(phoneNo.touched && phoneNo.errors?.required) || (phoneNo.touched && phoneNo.errors?.pattern)"
+                                placeholder="EX:07********" #phoneNo="ngModel" [(ngModel)]="mainModel.phoneNo"
+                                [pattern]="mobNumberPattern" maxlength="10" required>
+                            <div *ngIf="phoneNo.touched && phoneNo.errors?.required" style="color: red;">
+                                Please enter your phone number
+                            </div>
+                            <div *ngIf="phoneNo.touched && phoneNo.errors?.pattern" style="color: red;">
+                                Please enter valid phone number
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail">Province <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" name="province" class="form-control"
+                                [class.is-invalid]="province.touched && province.errors?.required"
+                                placeholder="For Example: Sabaragamuwa" #province="ngModel"
+                                [(ngModel)]="mainModel.province" required>
+                            <div *ngIf="province.touched && province.errors?.required" style="color: red;">
+                                Enter your email
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail">District <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" name="district" class="form-control"
+                                [class.is-invalid]="district.touched && district.errors?.required"
+                                placeholder="For Example: Rathnapura" #district="ngModel"
+                                [(ngModel)]="mainModel.district" required>
+                            <div *ngIf="district.touched && district.errors?.required" style="color: red;">
+                                Enter your email
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail">City <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" name="city" class="form-control"
+                                [class.is-invalid]="city.touched && city.errors?.required"
+                                placeholder="For Example: Eheliyagoda" #city="ngModel" [(ngModel)]="mainModel.city"
+                                required>
+                            <div *ngIf="city.touched && city.errors?.required" style="color: red;">
+                                Enter your email
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail">Address <sup>*</sup></label>
+                        <div class="controls">
+                            <input type="text" name="address" class="form-control"
+                                [class.is-invalid]="address.touched && address.errors?.required"
+                                placeholder="Ex: House# 120,Street# 123,abc Road" #address="ngModel"
+                                [(ngModel)]="mainModel.address" width="50px" required>
+                            <div *ngIf="address.touched && address.errors?.required" style="color: red;">
+                                Enter your email
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail">Location <sup>*</sup></label>
+                        <div class="controls">
+                            <select name="location" [(ngModel)]="mainModel.location" class="form-control" required>
+                                <option *ngFor="let active of statusArr" [value]="active.value">{{active.title}}
+                                </option>
+                            </select>
+
+                            <!-- <div *ngIf="location.touched && location.errors?.required" style="color: red;">
+                            Please select your Location
+                        </div> -->
+                        </div>
+                    </div>
+                    <!--  {{addressForm.invalid |json}} -->
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="submit" [disabled]="addressForm.invalid" value="Submit"
+                                class="exclusive shopBtn">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
