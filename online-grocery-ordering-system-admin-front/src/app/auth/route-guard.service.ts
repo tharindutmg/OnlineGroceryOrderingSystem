@@ -12,22 +12,23 @@ export class RouteGuardService implements CanActivate {
   constructor(private router: Router) { }
 
   public canActivate(next: ActivatedRouteSnapshot) {
+    debugger
     const allowedRoles = next.data.allowedRoles;
     var isAuthorized = false;
-    
-    const value = localStorage.getItem(CONSTANTS.USER_DETAILS)
-    var userDetails : UserDetails = value !==null? JSON.parse(value):null;
 
-    const token = userDetails.userToken
+    const value = localStorage.getItem(CONSTANTS.USER_DETAILS)
+    var userDetails: UserDetails = value !== null ? JSON.parse(value) : null;
+
+    const token = userDetails !== null ? userDetails.userToken : null;
     if (token) {
       //this check is token valid
       if (this.tokenExpired(token)) {// token expired 
         this.clearLocalStroage();
-        
-        if(this.router.url !== "register"){
+
+        if (this.router.url !== "register") {
           this.router.navigate(['login']);
         }
-        
+
       } else { // token valid
         const roleStr = userDetails.userRole
         var roleLocalArr = roleStr !== null ? roleStr.split(",") : "";
@@ -38,7 +39,7 @@ export class RouteGuardService implements CanActivate {
           this.router.navigate(['accessdenied']);
         }
       }
-    }else{
+    } else {
       this.router.navigate(['login']);
     }
 
@@ -53,4 +54,4 @@ export class RouteGuardService implements CanActivate {
   private clearLocalStroage() {
     localStorage.removeItem(CONSTANTS.USER_DETAILS);
   }
-} 
+}

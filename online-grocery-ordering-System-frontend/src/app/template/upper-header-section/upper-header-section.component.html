@@ -8,9 +8,10 @@
                     <a href="#"><span class="icon-youtube"></span></a>
                     <a href="#"><span class="icon-tumblr"></span></a>
                 </div> -->
-                <a routerLink="/home" > <span class="icon-home"></span> Home</a>
-                <a routerLink="/profile" ><span class="icon-user"></span> {{userName}} 's Account</a>
-                <a routerLink="/registration"><span class="icon-edit"></span> Free Register </a>
+                <!-- <a routerLink="/home" > <span class="icon-home"></span> Home</a> -->
+                <!-- <a *ngIf="userName" routerLink="/profile" ><span class="icon-user"></span> {{userName}} 's Account</a> -->
+                <a *ngIf="!userName" routerLink="/login"><span class="icon-lock"></span> LOGIN </a>
+                <a *ngIf="!userName" routerLink="/registration"><span class="icon-edit"></span> SIGNUP </a>
                 <a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
                 <a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span
                         class="badge badge-warning"> $448.42</span></a>

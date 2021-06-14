@@ -18,10 +18,10 @@
                 <!-- <form action="#" class="navbar-search pull-left">
                     <input type="text" placeholder="Search" class="search-query span2">
                 </form> -->
-                <ul class="nav pull-right">
+                <ul *ngIf="userName" class="nav pull-right">
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="icon-lock"></span>
-                            Login <b class="caret"></b></a>
+                            {{userName}} 's Account <b class="caret"></b></a>
                         <div class="dropdown-menu">
                             <!-- <form class="form-horizontal loginFrm" #login="ngForm" (ngSubmit)="submit();">
                                 <div class="control-group">
@@ -66,11 +66,11 @@
                                     <button type="submit" class="shopBtn btn-block" [disabled]="login.invalid">Sign in</button>
                                 </div>
                             </form> -->
-                            <ul class="nav">
-                                <li class=""><a routerLink="/profile">Manage My Account </a></li>
+                            <ul class="nav" style="width: 170px;">
+                                <li class=""><a routerLink="/profile">View My Account </a></li>
                                 <li class=""><a href="/address-book">Manage Address</a></li>
-                                <li class=""><a href="grid-view.html">Grid View</a></li>
-                                <li class=""><a href="three-col.html">LogOut</a></li>
+                                <!-- <li class=""><a href="grid-view.html">Grid View</a></li> -->
+                                <li class=""><a href="/home" (click)="logOut()">LogOut</a></li>
                                 <li class=""><!-- <a href="four-col.html">Four Column</a> --></li>
                                 <li class=""><!-- <a href="general.html">General Content</a> --></li>
                             </ul>

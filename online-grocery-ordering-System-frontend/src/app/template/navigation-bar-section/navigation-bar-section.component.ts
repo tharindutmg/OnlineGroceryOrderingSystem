@@ -17,6 +17,10 @@ export class NavigationBarSectionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  value = localStorage.getItem(CONSTANTS.USER_DETAILS)
+  userDetails:UserDetails = this.value !==null? JSON.parse(this.value):new UserDetails();
+  userName = this.userDetails.fullName
+
   mainModel = new User()
 
   invalidLogin:boolean=false;
@@ -50,6 +54,15 @@ export class NavigationBarSectionComponent implements OnInit {
         this.invalidLogin=true;
       }
     })
+  }
+
+  logOut(){
+    //this._router.navigate(["/home"])
+    this.clearLocalStroage()
+  }
+
+  private clearLocalStroage(){
+    localStorage.removeItem(CONSTANTS.USER_DETAILS)
   }
 
 }

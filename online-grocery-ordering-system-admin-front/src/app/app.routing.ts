@@ -30,8 +30,6 @@ const routes: Routes = [
 
   {path: '', component: NavigationComponent,
   children: [
-  /* { path:  'login', component:  LoginComponent},
-  { path:  'register', component:  RegistrationComponent}, */
   {
     path: '',
     redirectTo: 'home',

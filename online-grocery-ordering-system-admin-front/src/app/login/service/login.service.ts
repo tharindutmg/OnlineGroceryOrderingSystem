@@ -11,6 +11,7 @@ export class LoginService {
     loginURL: string = login;
 
     login(login: Login) {
+        //debugger
         console.info(this._http);
         return this._http.post<any>(this.loginURL, login);
     }

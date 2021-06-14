@@ -17,7 +17,7 @@ export class UpperHeaderSectionComponent implements OnInit {
   
   value = localStorage.getItem(CONSTANTS.USER_DETAILS)
   userDetails:UserDetails = this.value !==null? JSON.parse(this.value):new UserDetails();
-  userName:String = this.userDetails?.fullName
+  userName = this.userDetails.fullName
   
 
 }

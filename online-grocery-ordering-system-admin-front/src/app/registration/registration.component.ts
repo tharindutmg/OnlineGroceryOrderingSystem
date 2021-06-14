@@ -25,6 +25,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   submit(form:any){
+    debugger
     this.mainModel.user.password = this.mainModel.password;
     this.mainModel.user.userName = this.mainModel.userName;
     //localStorage.clear();

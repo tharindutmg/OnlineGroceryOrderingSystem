@@ -47,6 +47,8 @@ export class LoginComponent implements OnInit {
   
         //console.info(userDetailss.userToken);
         this.toastr.success('Create Success', data.message);
+        
+        location.reload();
         this._router.navigate(["/profile"]);
       }else{
         this.invalidLogin=true;
