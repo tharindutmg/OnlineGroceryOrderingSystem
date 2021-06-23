@@ -33,7 +33,7 @@ public class UserAppServiceImpl implements UserAppService {
 			userApp.setUserId(userApp.getRegistrationId());
 			UserApp userAppObj=userAppRepo.save(userApp);
 			
-			resopnce.setObject(userAppObj);
+			resopnce.setNewObject(userAppObj);
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);
 			
@@ -83,11 +83,11 @@ public class UserAppServiceImpl implements UserAppService {
 				
 				//set application list to domain
 				
-				resopnce.setObject(userAppObj);
+				resopnce.setNewObject(userAppObj);
 				resopnce.setCode(CommonResponce.successCode);
 				resopnce.setMessage(CommonResponce.successMessage);
 			}else {
-				resopnce.setObject(userAppObj);
+				resopnce.setNewObject(userAppObj);
 				resopnce.setCode(CommonResponce.errorCodeRecordNotFound);
 				resopnce.setMessage(CommonResponce.errorMessageRecordNotFound);
 			}

@@ -30,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
 			role.setRoleCode(role.getRoleCode().toUpperCase());
 			Role roleObj=roleRepo.save(role);
 			
-			resopnce.setObject(roleObj);
+			resopnce.setNewObject(roleObj);
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);
 			
@@ -68,7 +68,7 @@ public class RoleServiceImpl implements RoleService {
 			
 			Optional<Role> roleObj=roleRepo.findById(role.getRoleId());
 			
-			resopnce.setObject(roleObj.get());
+			resopnce.setNewObject(roleObj.get());
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);
 			
@@ -87,7 +87,7 @@ public class RoleServiceImpl implements RoleService {
 			
 			Role roleObj=roleRepo.getrolebyRoleCode(role);
 			
-			resopnce.setObject(roleObj);
+			resopnce.setNewObject(roleObj);
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);
 			

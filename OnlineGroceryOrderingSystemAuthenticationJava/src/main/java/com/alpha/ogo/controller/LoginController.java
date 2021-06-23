@@ -41,7 +41,7 @@ public class LoginController {
 			
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.loginSuccessMessage);
-			resopnce.setObject(new AuthenticationResponse(jwt,userDetails.getUserId(),userDetails.getUsername(),true,userDetails.getAuthorities()));
+			resopnce.setNewObject(new AuthenticationResponse(userDetails,jwt));
 		}catch (BadCredentialsException e) {
 			//throw new Exception("Incorrect username or password", e);
 			resopnce.setCode(CommonResponce.errorCodeInvalidLogin);

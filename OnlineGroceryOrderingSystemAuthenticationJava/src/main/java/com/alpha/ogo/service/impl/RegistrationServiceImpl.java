@@ -44,7 +44,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 					registration.setUserId(user.getId());
 					
 					registrationRepo.save(registration);
-					resopnce.setObject(registration);
+					resopnce.setNewObject(registration);
 					resopnce.setCode(CommonResponce.successCode);
 					resopnce.setMessage(CommonResponce.successMessage);
 				}else {
@@ -57,7 +57,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 				registration.setUserId(user.getId());
 				
 				registrationRepo.save(registration);
-				resopnce.setObject(registration);
+				resopnce.setNewObject(registration);
 				resopnce.setCode(CommonResponce.successCode);
 				resopnce.setMessage(CommonResponce.successMessage);
 			}
@@ -136,7 +136,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 			
 			registration.setUser(user.get());
 			
-			resopnce.setObject(registration);
+			resopnce.setNewObject(registration);
 			
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);

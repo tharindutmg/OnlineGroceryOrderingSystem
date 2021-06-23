@@ -45,7 +45,7 @@ public class UseServiceImpl implements UserService{
 					user.setActive(true);
 					
 					User savedUser=userRepo.save(user);
-					resopnce.setObject(savedUser);
+					resopnce.setNewObject(savedUser);
 					resopnce.setCode(CommonResponce.successCode);
 					resopnce.setMessage(CommonResponce.successMessage);
 				}else {
@@ -54,7 +54,7 @@ public class UseServiceImpl implements UserService{
 				}
 			}else {
 				User updatedUser=userRepo.save(user);
-				resopnce.setObject(updatedUser);
+				resopnce.setNewObject(updatedUser);
 				resopnce.setCode(CommonResponce.successCode);
 				resopnce.setMessage(CommonResponce.successMessage);
 			}
@@ -116,7 +116,7 @@ public class UseServiceImpl implements UserService{
 		try {
 			Optional<User> user = userRepo.findById(userId);
 			
-			resopnce.setObject(user.get());
+			resopnce.setNewObject(user.get());
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);
 			
@@ -133,7 +133,7 @@ public class UseServiceImpl implements UserService{
 		try {
 			Address savedAddress=addressRepo.save(address);
 			
-			resopnce.setObject(savedAddress);
+			resopnce.setNewObject(savedAddress);
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);
 		} catch (Exception e) {
@@ -147,9 +147,9 @@ public class UseServiceImpl implements UserService{
 	public CommonResponce<Address> getAllUserAddress(Long userId) {
 		CommonResponce<Address> resopnce = new CommonResponce<Address>();
 		try {
-			Address address=addressRepo.getAddressByUserId(userId);
+			List<Address> address=addressRepo.getAddressByUserId(userId);
 			
-			resopnce.setObject(address);
+			resopnce.setList(address);
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);
 		

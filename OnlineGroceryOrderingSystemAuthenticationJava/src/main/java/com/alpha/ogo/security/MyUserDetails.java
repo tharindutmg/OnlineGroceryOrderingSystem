@@ -15,10 +15,13 @@ public class MyUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 8889981271356041140L;
 	private Long userId;
-    private String userName;
+    private String userName; //mobile number
     private String password;
     private boolean active;
     private List<GrantedAuthority> authorities;
+
+    private String email;
+    private String fullName;
 
     public MyUserDetails(User user) {
     	this.userId = user.getId();
@@ -28,6 +31,8 @@ public class MyUserDetails implements UserDetails {
         this.authorities = Arrays.stream(user.getRoles().split(","))
                     .map(SimpleGrantedAuthority::new)
                     .collect(Collectors.toList());
+        this.email = user.getEmail();
+        this.fullName = user.getFullName();
     }
 
     public Long getUserId() {
@@ -67,5 +72,21 @@ public class MyUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return active;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

@@ -16,14 +16,19 @@ public class AuthenticationResponse implements Serializable {
     private final boolean active;
     private final Collection<? extends GrantedAuthority> roles;
 
+	private final String email;
+	private final String fullName;
 
-    public AuthenticationResponse(String jwt,Long userId, String userName, boolean active,Collection<? extends GrantedAuthority> collection) {
+
+    public AuthenticationResponse(MyUserDetails userDetails,String jwt) {
 		super();
 		this.token = jwt;
-		this.userId = userId;
-		this.userName = userName;
-		this.active = active;
-		this.roles = collection;
+		this.userId = userDetails.getUserId();
+		this.userName = userDetails.getUsername();
+		this.active = userDetails.isEnabled();
+		this.roles = userDetails.getAuthorities();
+		this.email = userDetails.getEmail();
+		this.fullName = userDetails.getFullName();
 	}
 
 	/*

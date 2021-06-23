@@ -1,9 +1,12 @@
 package com.alpha.ogo.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.alpha.ogo.domain.Address;
+
+import java.util.List;
 
 /**
  * @author Tharindu
@@ -14,6 +17,6 @@ import com.alpha.ogo.domain.Address;
 @Repository
 public interface AddressRepo extends JpaRepository<Address, Long>{
 
-	Address getAddressByUserId(Long userId);
+	List<Address> getAddressByUserId(Long userId);
 
 }

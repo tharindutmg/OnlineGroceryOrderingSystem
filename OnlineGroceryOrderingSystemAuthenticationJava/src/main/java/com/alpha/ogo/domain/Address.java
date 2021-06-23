@@ -40,7 +40,7 @@ public class Address {
 	private Long addressId;
 	
 	@Column(name="USER_ID")
-	private String userId;
+	private Long userId;
 	
 	@Column(name="FULL_NAME")
 	private String fullName;

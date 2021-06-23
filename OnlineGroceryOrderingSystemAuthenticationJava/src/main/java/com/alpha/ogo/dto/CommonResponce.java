@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 public class CommonResponce<T> {
 	
-	public T object;
+	public T newObject;
 	public List<T> list;
 	
 	public String code;

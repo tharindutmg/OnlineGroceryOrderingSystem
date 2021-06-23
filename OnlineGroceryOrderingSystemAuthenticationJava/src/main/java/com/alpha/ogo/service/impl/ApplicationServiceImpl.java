@@ -28,7 +28,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 			application.setApplicationCode(application.getApplicationCode().toUpperCase());
 			Application obj=applicationRepo.save(application);
 			
-			resopnce.setObject(obj);
+			resopnce.setNewObject(obj);
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);
 			
@@ -66,7 +66,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 			
 			Optional<Application> obj=applicationRepo.findById(application.getApplicationId());
 			
-			resopnce.setObject(obj.get());
+			resopnce.setNewObject(obj.get());
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);
 			
@@ -83,7 +83,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 		CommonResponce<Application> resopnce = new CommonResponce<Application>();
 		try {
 			Application obj=applicationRepo.getApplicationbyApplicationCode(code.toUpperCase());
-			resopnce.setObject(obj);
+			resopnce.setNewObject(obj);
 			resopnce.setCode(CommonResponce.successCode);
 			resopnce.setMessage(CommonResponce.successMessage);
 			
