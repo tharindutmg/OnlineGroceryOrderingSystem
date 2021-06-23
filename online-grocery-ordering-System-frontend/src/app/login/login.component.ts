@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   submit(){
     this.invalidLogin=false;
     this.navigationService.login(this.mainModel).subscribe(data =>{
-      //debugger
+      debugger
       if(data.code === CONSTANTS.CODE){
         var role=new String( );
         for(let x=0;data.newObject.roles.length > x ; x++){
@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
         this._router.navigate(["/profile"]);
       }else{
         this.invalidLogin=true;
+        this.toastr.error('Somthing Wrong', data.message);
+        this._router.navigate(["/login"]);
       }
     })
   }
